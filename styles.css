@@ -14,3 +14,7 @@ a,button{transition:color .25s var(--ease),background .25s var(--ease),border-co
 }
 @keyframes header-in{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}@keyframes rise-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes art-in{from{opacity:0;transform:translateY(25px) rotate(-3deg)}to{opacity:1;transform:translateY(0) rotate(0)}}@keyframes label-in{from{opacity:0;transform:translate(-12px,10px)}to{opacity:1;transform:translate(0,0)}}@keyframes star-in{from{opacity:0;transform:rotate(-35deg) scale(.75)}to{opacity:1;transform:rotate(14deg) scale(1)}}@keyframes viewer-in{from{opacity:0}to{opacity:1}}@keyframes viewer-out{from{opacity:1}to{opacity:0}}@keyframes photo-in{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes photo-out{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.97)}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none!important}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Neutral portfolio headline: keep longer factual copy readable. */
+.hero h1.plain-heading{font-size:clamp(48px,5.1vw,72px);letter-spacing:-3px;line-height:1.12}.hero h1.plain-heading .serif{font-size:1.14em;line-height:1}
+@media(max-width:760px){.hero h1.plain-heading{font-size:clamp(41px,11.3vw,70px);letter-spacing:-2.3px}}
