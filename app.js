@@ -1,0 +1,82 @@
+'use strict';
+const works = [
+  {
+    "title": "Орнамент на предплечье",
+    "width": 1080,
+    "height": 1440,
+    "src": "assets/work-6.webp"
+  },
+  {
+    "title": "Графика на шее",
+    "width": 1080,
+    "height": 1440,
+    "src": "assets/work-2.webp"
+  },
+  {
+    "title": "Паук",
+    "width": 1080,
+    "height": 1191,
+    "src": "assets/work-4.webp"
+  },
+  {
+    "title": "Линии на руке",
+    "width": 1080,
+    "height": 1441,
+    "src": "assets/work-5.webp"
+  },
+  {
+    "title": "Орнамент и бабочка",
+    "width": 1280,
+    "height": 1475,
+    "src": "assets/work-3.webp"
+  },
+  {
+    "title": "Надпись на предплечье",
+    "width": 640,
+    "height": 480,
+    "src": "assets/work-1.webp"
+  },
+  {
+    "title": "Ветка сакуры",
+    "width": 640,
+    "height": 427,
+    "src": "assets/work-7.webp"
+  }
+];
+const gallery = document.querySelector('#gallery');
+const dialog = document.querySelector('#lightbox');
+let activeIndex = 0;
+let returnFocus;
+function showWork(index) {
+  if (!works.length) return;
+  activeIndex = (index + works.length) % works.length;
+  const work = works[activeIndex];
+  document.querySelector('#viewer-image').src = work.src;
+  document.querySelector('#viewer-image').alt = work.title;
+  document.querySelector('#viewer-caption').textContent = work.title + ' · ' + (activeIndex + 1) + ' / ' + works.length;
+}
+works.forEach((work, index) => {
+  const button = document.createElement('button');
+  button.className = 'work';
+  button.setAttribute('aria-label', 'Увеличить фото: ' + work.title);
+  const frame = document.createElement('div'); frame.className = 'work-image';
+  const img = document.createElement('img'); img.src = work.src; img.alt = work.title; img.width = work.width || 800; img.height = work.height || 1000; img.loading = 'lazy'; img.decoding = 'async';
+  const icon = document.createElement('span'); icon.className = 'work-overlay'; icon.textContent = '↗'; icon.setAttribute('aria-hidden', 'true');
+  frame.append(img, icon);
+  const caption = document.createElement('span'); caption.className = 'work-caption';
+  const title = document.createElement('span'); title.textContent = work.title;
+  const type = document.createElement('small'); type.textContent = 'KKTATOO'; caption.append(title, type);
+  button.append(frame, caption);
+  button.addEventListener('click', () => { returnFocus = button; showWork(index); dialog.showModal(); });
+  gallery.append(button);
+});
+if (works.length) {
+  const hero = document.querySelector('#hero-photo');
+  hero.src = works[0].src; hero.alt = works[0].title;
+} else { document.querySelector('.hero-photo').classList.add('logo-mode'); }
+document.querySelector('.close-viewer').addEventListener('click', () => dialog.close());
+document.querySelector('.viewer-prev').addEventListener('click', () => showWork(activeIndex - 1));
+document.querySelector('.viewer-next').addEventListener('click', () => showWork(activeIndex + 1));
+dialog.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') { e.preventDefault(); showWork(activeIndex - 1); } if (e.key === 'ArrowRight') { e.preventDefault(); showWork(activeIndex + 1); } });
+dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+dialog.addEventListener('close', () => { if (returnFocus) returnFocus.focus(); });
