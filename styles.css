@@ -18,3 +18,6 @@ a,button{transition:color .25s var(--ease),background .25s var(--ease),border-co
 /* Neutral portfolio headline: keep longer factual copy readable. */
 .hero h1.plain-heading{font-size:clamp(48px,5.1vw,72px);letter-spacing:-3px;line-height:1.12}.hero h1.plain-heading .serif{font-size:1.14em;line-height:1}
 @media(max-width:760px){.hero h1.plain-heading{font-size:clamp(41px,11.3vw,70px);letter-spacing:-2.3px}}
+
+/* SVG icons keep decoration monochrome on iOS instead of using emoji glyphs. */
+.ui-icon{display:inline-block;width:1em;height:1em;vertical-align:-.12em;flex-shrink:0;overflow:visible}.contact-decoration .ui-icon,.art-star .ui-icon{display:block}.footer-brand .ui-icon{vertical-align:-.08em}

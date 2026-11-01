@@ -72,7 +72,7 @@ works.forEach((work, index) => {
   button.setAttribute('aria-label', 'Увеличить фото: ' + work.title);
   const frame = document.createElement('div'); frame.className = 'work-image';
   const img = document.createElement('img'); img.src = work.src; img.alt = work.title; img.width = work.width || 800; img.height = work.height || 1000; img.loading = 'lazy'; img.decoding = 'async';
-  const icon = document.createElement('span'); icon.className = 'work-overlay'; icon.textContent = '↗'; icon.setAttribute('aria-hidden', 'true');
+  const icon = document.createElement('span'); icon.className = 'work-overlay'; icon.innerHTML = "<svg class=\"ui-icon\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M6 18 18 6M6 6h12v12\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"; icon.setAttribute('aria-hidden', 'true');
   frame.append(img, icon);
   const caption = document.createElement('span'); caption.className = 'work-caption';
   const title = document.createElement('span'); title.textContent = work.title;
